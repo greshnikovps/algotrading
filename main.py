@@ -1,25 +1,3 @@
-
-'''
-from datetime import timedelta
-
-TOKEN = "t.SYk8VU-SfWW7WX33_fXX4VOLGHexFrSRYTjT_6ldKVJxmb_UwHElz3VLtYjlrWuch_J4Pj0bq_gY1FuxdttPmQ"
-
-def main():
-    with Client(TOKEN) as client:
-        for candle in client.get_all_candles(
-            figi="BBG004730N88",
-            from_=now() - timedelta(days=365),
-            interval=CandleInterval.CANDLE_INTERVAL_HOUR,
-        ):
-            print(candle)
-
-    return 0
-
-
-if __name__ == "__main__":
-    main()
-'''
-
 from Coordinator import Coordinator
 from TelegramNotifier import TelegramNotifier
 from TinkoffBrokerApi import TinkoffBrokerApi
