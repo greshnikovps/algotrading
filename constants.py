@@ -1,0 +1,7 @@
+BUY = 1
+DO_NOTHING = 0
+SELL = -1
+ERROR = -2
+
+
+MS_IN_SEC = 1000

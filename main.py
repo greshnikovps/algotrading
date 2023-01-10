@@ -15,8 +15,9 @@ if __name__ == "__main__":
 
     # set broker API
     tinkoff_api = TinkoffBrokerApi()
-    token = config.token()
+    token = config.get_token()
     tinkoff_api.set_token(token)
+    tinkoff_api.set_coordinator(coordinator)
     coordinator.set_broker_api(tinkoff_api)
 
     # set market cache

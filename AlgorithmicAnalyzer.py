@@ -1,7 +1,4 @@
-BUY = 1
-DO_NOTHING = 0
-SELL = -1
-ERROR = -2
+from constants import *
 
 
 class AlgorithmicAnalyzer:
@@ -13,13 +10,16 @@ class AlgorithmicAnalyzer:
     def __init__(self):
         self.stock_prices = []
         self.result = None
-        self.prices_needed_len = 1  # every child of this class should override this field
+        self.prices_needed_len = 5  # every child of this class should override this field
 
     def get_result(self):
         if self.result is None:
             self.calculate_result()
 
         return self.result
+
+    def is_ready_to_calculate(self):
+        return len(self.stock_prices) == self.prices_needed_len
 
     def add_prices(self, new_prices):
         self.result = None
@@ -30,9 +30,19 @@ class AlgorithmicAnalyzer:
             self.result = ERROR
             return
 
-        # if we have too much information about past
+        # if we have too much information about the past
         elif len(self.stock_prices) > self.prices_needed_len:
             self.stock_prices = self.stock_prices[-self.prices_needed_len:]
 
     def calculate_result(self):
-        self.result = DO_NOTHING
+        prices_sum = 0
+        for price in self.stock_prices:
+            prices_sum += price.high.units
+
+        prices_sum = round(prices_sum)
+        if (prices_sum % 2) != 0:
+            self.result = BUY
+        else:
+            self.result = SELL
+
+        return self.result

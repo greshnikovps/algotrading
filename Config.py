@@ -7,7 +7,7 @@ class Config:
     def __init__(self):
         self.token = read_token()
 
-    def token(self):
+    def get_token(self):
         return self.token
 
 
